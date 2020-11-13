@@ -1,0 +1,164 @@
+---
+title: "Project Two"
+output: html_document
+---
+
+Due Oct. 18 at Midnight. 
+
+For this first part of the exam, you can either use `surveys_complete.csv` or your own data. If you are using your own data, you must have data in which you think you have a numerical predictor variable and a numerical response variable. If you are using `surveys_complete`, you can use weight and hindfoot_length for this.
+
+1) Load in your data. Which variable will you be using as a predictor, and which as a response? (5 pts)
+
+```{r}
+orig_meas <- read_csv("/cloud/project/projects_maldonado/project_two_maldonado/origdata_meas.csv")
+
+```
+
+```
+#I am using TrunkLgth as a predictor and TrunkWdth as a response. 
+```
+
+2) Plot the two against each other with a scatter plot. Do the data appear to be related linearly? (5 pts)
+
+
+```{r}
+ggplot(orig_meas, mapping = aes(x = TrunkLgth, y = TrunkWdth)) + geom_point()
+```
+
+```
+#It appears linear as there is no notable curve or plateau. 
+```
+
+
+3) Fit the linear model. View the summary. (5 pts)
+
+
+```{r}
+trunk_fit <- lm(TrunkLgth ~ TrunkWdth, data = orig_meas)
+summary(trunk_fit)
+```
+
+4) Does the summary make sense? Does our model have good precitive power? Evaluate the residual standard error, intercept, and R-Squared in particular.  (10 pts)
+
+
+```
+#It seems to have a moderately good fit. The residual standard error of 3.615 is not that close to 0. That could be problematic as it indiciates the model fit is not great. The p-value for the intercept is significant (***), meaning that the intercept differs from 0. The intercept is estimated to be 11.2487 when TrunkWdth = 0, so the p-value makes sense. The adjusted R-squared tells us that a large portion of the variation in TrunkWdth is explained by TrunkLgth (about 66%). However, there are definitely other factors that are also affecting the TrunkWdth. 
+```
+
+
+5) Plot the model on the graph. Increase the size of the text so it is comfortably readable at 5 feet. (5 pts)
+
+```{r}
+ggplot(orig_meas, aes(x = TrunkLgth, y = TrunkWdth)) + geom_point(size = 0.5) + geom_smooth(method = "lm", color = "navy", size = 0.5, fill = "deeppink4") + labs(x = "Trunk Width (mm)", y = "Trunk Length (mm)", title = "Linear regression to predict trunk width")+ annotate("text", x = 40, y = 15, label = "R^2 == 0.659", color = "firebrick", size = 7) + theme_bw() + theme(text=element_text(size = 20))
+
+```
+
+
+6) Check the normality of the residuals. Do they look OK? Are we violating assumptions? (5 pts)
+
+```{r}
+
+augmented_trunk <- broom::augment(trunk_fit)
+qqnorm(augmented_trunk$.resid)
+qqline(augmented_trunk$.resid)
+
+```
+
+
+```{r}
+
+#Most of the points are right on the line so normality is looking good for the residuals. Since our relationship of numerical variables was linear and our residuals are normally distributed, we are not violating any assumptions. 
+```
+
+7) If you are using `surveys_complete`: Is there interspecific variation in the linear model? Hint: look at our prior work with facet plots. (15 pts) 
+
+If you are *not* using  `surveys_complete`: Do you think there are groupings within your data that may have a separate linear model? Try grouping the data by that variable and redoing the lm. (15 pts)
+
+```{r}
+ggplot(orig_meas, aes(x = TrunkLgth, y = TrunkWdth)) + geom_point(size = 0.5) + geom_smooth(method = "lm", color = "navy", size = 0.5, fill = "deeppink4") + theme_bw() + facet_wrap(facets = vars(population))
+```
+```
+#In this facet wrap, it appears that there are not wildly different outcomes when grouping by population. The linear model of trunk width and length follow about the same slope, mostly with different patterns of standard error. Much of these differences could also be due to different sample sizes for each population. Many of the data points were not even assigned a population (see "NA"). 
+```
+
+## Part Two
+
+In this portion, you are free to use your own data if you have a categorical predictor variable and a response variable. Otherwise, you may use the columns sex and weight in `surveys_complete`
+
+1) First, plot the data grouped by sex (5 pts)
+
+```{r}
+
+
+ggplot(surveys_complete, aes(x = sex, y = weight, color = sex)) + geom_jitter()
+
+```
+
+2) Try an ANOVA of this data (5 pt)
+
+```{r}
+
+anova_surveys_fit <- anova_surveys_fit
+anova_surveys_fit <- aov(surveys_fit)
+summary(anova_surveys_fit)
+
+```
+
+3) How about a linear model? What information does this give you that an ANOVA can't? (5 pts)
+
+
+```{r}
+
+
+surveys_fit <- lm(weight ~ sex, data = surveys_complete)
+summary(surveys_fit)
+
+```
+
+```
+#The linear model tells you the R-squared while the ANOVA does not. A linear model also tells you how the numerical variable in question (here it is weight) responds to a condition of the categorical variable (sex). Our baseline is female (Intercept) which tells us the information expected for the baseline. Female basically functions as 0. The next line, sexM, tells us information for being male based on female as the baseline. The estimate 0.6124 means that if the baseline is female, being male will estimate the weight to be 0.6124 greater. Basically, the ANOVA will tell us if one of our variables significantly affects the other but will not tell us HOW. The linear model gives us that information. 
+```
+
+3) Plot the lm with the data, with points colored by sex. (10 pts)
+
+
+```{r}
+
+ggplot(surveys_complete, aes(x = sex, y = weight, color = sex)) + geom_jitter() + labs(x = "Sex", y = "Weight (g)") + stat_summary(fun.data = "mean_se", color = "black")
+```
+```
+#This is basically my plot from #1 but I've added means to further illustrate that the two categories are not signficantly different. The vaiance is nearly identical, with males reaching higher weights slightly more frequently but not to a significant degree. I tried adding a line with geom_smooth (method = "lm") but no line was added. I believe it is because there is no linear relationship due to one of the variables being a category. There is no real slope because the points are jittered instead of ordered across a range. If the variances were significantly different, we could illustrate that with a graph like this one and adding the p-value on top if significant. However, that is not the case here.  
+#AMW I think you're probably right
+```
+
+
+## Part Three
+
+
+1) Add and commit this document (5 pts)
+
+```
+#I went into the Git window, checked the files I had amended and wanted committed, then clicked Commit. I added a comment to it and commited them. It said it inserted 6 files. 
+```
+
+2) Push your changes to github (10 pts)
+
+```
+#I had to create a new remote but afterwards I was able to hit Push and update everything. 
+```
+
+3) Make a pull request on my repo so I'm notified. *Do this last, when you are done and ready for me to see it* (10pts)
+
+```
+#Well, I ended up having major issues with GitHub. I created a branch and tried to delete it and somehow some of my directories got deleted. I saved my ProjectTwo.Rmd to a new directory. I can't find my function anymore. I made a new one in /cloud/project/maldonado/R. I tried to commit both of these and it worked, but when I tried to push I got an error. I don't want to mess it up further. 
+
+#AMW: It's fine, I got it.
+```
+
+# MS students
+
+My expectation is that you'll do this with your own data. If any part of this doesn't make sense with your data, please get in touch ASAP so we can work it out.
+
+In addition, please take one of the statistical tests we tried, and write it as a function in the `R/` folder of your last name directory. Write appropriate documentation with it. Add, commit, and push it to Github. I'll view it there.
+
+#AMW Great work, especially on the function

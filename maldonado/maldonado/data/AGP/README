@@ -1,0 +1,12 @@
+Contains size and mass data for different species of amphibians that were caught in various different types of traps. 
+
+Dimensions: 5,254 x 8 
+
+  ..   ID = col_double(),
+  ..   Date = col_character(),
+  ..   Location = col_character(),
+  ..   TrapType = col_character(),
+  ..   Species = col_character(),
+  ..   Stage = col_character(),
+  ..   Mass = col_double(),
+  ..   SVL = col_double()

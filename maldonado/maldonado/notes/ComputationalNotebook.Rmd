@@ -1,0 +1,62 @@
+---
+title: "Computational Lab Notebook"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sept. 23, 2020
+
+*Goal:* Plot species capture numbers with certain trap types. 
+
+*Worked:*
+```
+agp_traps <- agp %>% 
+filter(TrapType != "Other") %>% 
+filter(TrapType != "Hand") %>% 
+filter(TrapType != "NA")
+
+Worked to remove some values. 
+```
+
+*Did Not Work:*
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+##October 5
+Trying revision management for the first time. 
+
+Repository = a place for all the code of a project
+
+Workflow: add - commit - push
+When we have some code we wanna add to a repository we have three steps. 
+Add = tell Git what file we've added stuff to
+Commit = tell Git what code to save; "commiting" to code 
+Push = actually put the code in the repository 
+
+Commit ID = ??? what a code looks like at a particular commit
+
+First push worked. 
+
+Never call any file final!
+
+With revision management, we don't change the names of files. 
+

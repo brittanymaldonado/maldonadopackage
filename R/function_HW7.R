@@ -5,9 +5,6 @@
 #' @importFrom lubridate mdy
 #' @importFrom assertthat assert_that
 #' @export
-#' @example
-#' yearify(agp_biomass)
-#'
 #'
 
 

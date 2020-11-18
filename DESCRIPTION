@@ -5,8 +5,7 @@ Authors@R:
     person(given = "Brittany",
            family = "Maldonado",
            role = c("aut", "cre"),
-           email = "brittany.maldonado@selu.edu",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "brittany.maldonado@selu.edu")
 Description: This package does some stuff to some stuff.
 Depends:R (> 3.0.0)
 Imports: tidyverse, iNEXT, ggplot2

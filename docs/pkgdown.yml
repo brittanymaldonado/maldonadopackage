@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   Tutorial: Tutorial.html
-last_built: 2020-11-16T21:08Z
+  TutorialwFixes: TutorialwFixes.html
+last_built: 2020-11-23T19:40Z
 

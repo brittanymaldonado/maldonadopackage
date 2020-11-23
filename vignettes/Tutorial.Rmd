@@ -21,15 +21,17 @@ devtools::install_github("brittanymaldonado/maldonadopackage")
 library(maldonadopackage)
 ```
 
-## Formatting dates and creating "Year" column
+## Function 1 - Formatting dates and creating "Year" column
 
-#Do you have a long-term dataset with many observations? Would you like to format your data in a way that allows easy visualization of year-to-year trends? Then this is the function for you! The dataset you input only needs to have a "Date" column in the following format: MM/DD/YYYY. This function is ideal for long-term datasets with observations across years or many observations per month. What do you get out of it? A column, "Year," that pulls the year for each observation out of the date and a column, "Month" that pulls the month for each observation out of the date. 
+#Do you have a long-term dataset with many observations? Would you like to format your data in a way that allows easy visualization of year-to-year trends? Then this is the function for you! The dataset you input only needs to have a "Date" column in the following format: MM/DD/YYYY. This function is ideal for long-term datasets with observations across years or many observations per month. What do you get out of it? A column, "Year," that pulls the year for each observation out of the date.
 
 
 ```{r}
 library(tidyverse)
 library(assertthat)
 library(lubridate)
-agp <- read.csv(file = "../inst/extdata/agpdata.csv")
-yearify(agp)
+file_path <- system.file("extdata", "agpdata.csv", package="maldonadopackage")
+agp <- read.csv(file_path)
+agp_by_yr <- yearify(agp)
+agp_by_yr
 ```

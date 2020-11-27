@@ -14,4 +14,3 @@ yearify <- function(data){
 data_yr <- data %>% mutate(Year = year(Date1))
 return(data_yr)
 }
-

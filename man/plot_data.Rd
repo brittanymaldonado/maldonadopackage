@@ -10,7 +10,7 @@ plot_data(data, Year, Biomass, Species)
 \item{data}{data.frame to use}
 }
 \value{
-
+plot with biomass by year with species colored
 }
 \description{
 Visualizing trends for long-term datasets

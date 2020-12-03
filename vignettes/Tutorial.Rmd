@@ -27,7 +27,7 @@ Do you have a long-term dataset with many observations? Would you like to format
 
 
 ```{r}
-library(tidyverse)
+library(ggplot2)
 library(assertthat)
 library(lubridate)
 file_path <- system.file("extdata", "agp.csv", package="maldonadopackage")
@@ -36,7 +36,7 @@ agp_parsed <- parse_dates(agp)
 head(agp_parsed)
 ```
 
-That's great and all, but what is the use? Now that the dates are formatted in this way, you can manipulate these data to observe trends. 
+That's great and all, but how do we use this? Now that the dates are formatted in this way, we can manipulate these data to observe trends. 
 
 Function 2 - Calculating biomass for each life stage of each species in the dataset
 

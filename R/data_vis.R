@@ -1,8 +1,8 @@
 #' Visualizing trends for long-term datasets
 #'
 #' @param data data.frame to use
-#' @return
-#' @importFrom tidyverse ggplot
+#' @return plot with biomass by year with species colored
+#' @importFrom ggplot2 ggplot
 #' @export
 #'
 

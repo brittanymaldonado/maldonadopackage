@@ -6,10 +6,10 @@
 #' @export
 #'
 
-plot_data <- function(data, x, y, col, z){
+plot_data <- function(data, Year, Biomass, Species){
   ggplot(data = data,
-       mapping = aes(x = x, y = y, color = col)) +
+       mapping = aes(x = Year, y = Biomass, color = Species)) +
   geom_line() +
-  facet_wrap(vars(z)) +
+  labs(title = "Yearly biomass", x = "Year", y = "Biomass") +
   theme_bw()
 }

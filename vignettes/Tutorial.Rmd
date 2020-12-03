@@ -21,17 +21,35 @@ Now load the package.
 library(maldonadopackage)
 ```
 
-Function 1 - Formatting dates and creating "Year" column
+Function 1 - Formatting dates and creating "Year" and "Month" columns
 
-Do you have a long-term dataset with many observations? Would you like to format your data in a way that allows easy visualization of year-to-year trends? Then this is the function for you! The dataset you input only needs to have a "Date" column in the following format: MM/DD/YYYY. This function is ideal for long-term datasets with observations across years or many observations per month. What do you get out of it? A column, "Year," that pulls the year for each observation out of the date.
+Do you have a long-term dataset with many observations? Would you like to format your data in a way that allows easy visualization of year-to-year trends? Then this is the function for you! The dataset you input only needs to have a "Date" column in the following format: MM/DD/YYYY. This function is ideal for long-term datasets with observations across years or many observations per month. What do you get out of it? A date column reformatted with lubridate, a "Year" column that pulls the year for every observation, and a "Month" column that pulls the month for every observation.
 
 
 ```{r}
 library(tidyverse)
 library(assertthat)
 library(lubridate)
-file_path <- system.file("extdata", "agpdata.csv", package="maldonadopackage")
+file_path <- system.file("extdata", "agp.csv", package="maldonadopackage")
 agp <- read.csv(file_path)
-agp_by_yr <- yearify(agp)
-head(agp_by_yr)
+agp_parsed <- parse_dates(agp)
+head(agp_parsed)
 ```
+
+That's great and all, but what is the use? Now that the dates are formatted in this way, you can manipulate these data to observe trends. 
+
+Function 2 - Calculating biomass for each life stage of each species in the dataset
+
+```{r}
+agp_biomass <- biomass(agp_parsed, Species, Stage, Year, Mass)
+agp_biomass
+```
+
+This creates a small data frame that pretty easy to scroll through, but it would be better if we could visualize it. This third function is a streamlined approach to generating a plot for these data. 
+
+Function 3 - Generating a line plot showing biomass for each life stage of each species 
+
+```{r}
+plot_data(agp_biomass, Year, Biomass, Species)
+```
+

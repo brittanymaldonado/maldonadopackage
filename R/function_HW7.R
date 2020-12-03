@@ -7,10 +7,14 @@
 #' @export
 #'
 
+library(tidyverse)
+library(lubridate)
+library(assertthat)
 
-yearify <- function(data){
+parse_dates <- function(data){
   assert_that(is.data.frame(data))
-  data$Date1 <- mdy(data$Date)
-data_yr <- data %>% mutate(Year = year(Date1))
-return(data_yr)
+  data$DATE <- mdy(data$Date)
+  data_yr <- data %>% mutate(Year = year(DATE))
+  data_yr_mo <- data_yr %>% mutate(Month = month(DATE)) %>% select(-Date)
+  return(data_yr_mo)
 }

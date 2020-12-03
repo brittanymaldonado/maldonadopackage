@@ -10,6 +10,8 @@
 #'
 
 biomass <- function(data, Species, Stage, Year, Mass){
-  summed <- data %>% group_by(Species, Stage, Year) %>% summarise(Biomass = sum(Mass, na.rm = TRUE))
-  return(summed)
+  summed <- data
+  grouped <- group_by(summed, Species, Stage, Year)
+  summarized <- summarise(grouped, Biomass = sum(Mass, na.rm = TRUE))
+  return(summarized)
 }

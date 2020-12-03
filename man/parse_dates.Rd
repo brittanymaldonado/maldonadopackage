@@ -2,7 +2,7 @@
 % Please edit documentation in R/parsedates.R
 \name{parse_dates}
 \alias{parse_dates}
-\title{Creating a year column from dates for easy grouping and visualization}
+\title{Creating a year and month column from dates for easy grouping and visualization}
 \usage{
 parse_dates(data)
 }
@@ -13,5 +13,5 @@ parse_dates(data)
 same data.frame but now with a column that just has Year for each entry
 }
 \description{
-Creating a year column from dates for easy grouping and visualization
+Creating a year and month column from dates for easy grouping and visualization
 }

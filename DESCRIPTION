@@ -8,7 +8,7 @@ Authors@R:
            email = "brittany.maldonado@selu.edu")
 Description: This package does some stuff to some stuff.
 Depends:R (> 3.0.0)
-Imports: tidyverse, iNEXT, ggplot2
+Imports: tidyverse, ggplot2, lubridate
 Suggests: knitr, rmarkdown, testthat
 License: MIT
 Encoding: UTF-8

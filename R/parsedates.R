@@ -1,9 +1,11 @@
-#' Creating a year column from dates for easy grouping and visualization
+#' Creating a year and month column from dates for easy grouping and visualization
 #'
 #' @param data data.frame to use
 #' @return same data.frame but now with a column that just has Year for each entry
 #' @importFrom lubridate mdy
 #' @importFrom assertthat assert_that
+#' @importFrom dplyr select
+#' @importFrom dplyr mutate
 #' @export
 #'
 

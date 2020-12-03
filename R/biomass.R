@@ -6,8 +6,8 @@
 #' @param Year third column to group by
 #' @param Mass column that is summed
 #' @return data frame with biomass for each life stage of a species for each year
-#' @importFrom tidyverse group_by
-#' @importFrom tidyverse summarise
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarise
 #' @export
 #'
 

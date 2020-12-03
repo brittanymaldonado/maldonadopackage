@@ -88,95 +88,66 @@
 <p>First things first - install the package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"brittanymaldonado/maldonadopackage"</span><span class="op">)</span></code></pre></div>
-<pre><code>## Downloading GitHub repo brittanymaldonado/maldonadopackage@HEAD</code></pre>
-<pre><code>## 
-##   
-  
-  
-   checking for file 'C:\Users\brmal\AppData\Local\Temp\RtmpeuuUIt\remotes287c4765a8\brittanymaldonado-maldonadopackage-4da0c22/DESCRIPTION' ...
-  
-   checking for file 'C:\Users\brmal\AppData\Local\Temp\RtmpeuuUIt\remotes287c4765a8\brittanymaldonado-maldonadopackage-4da0c22/DESCRIPTION' ... 
-  
-v  checking for file 'C:\Users\brmal\AppData\Local\Temp\RtmpeuuUIt\remotes287c4765a8\brittanymaldonado-maldonadopackage-4da0c22/DESCRIPTION' (1.5s)
-## 
-  
-  
-  
--  preparing 'maldonadopackage': (1.7s)
-##    checking DESCRIPTION meta-information ...
-  
-   checking DESCRIPTION meta-information ... 
-  
-v  checking DESCRIPTION meta-information
-## 
-  
-  
-  
--  checking for LF line-endings in source and make files and shell scripts (349ms)
-## 
-  
-  
-  
--  checking for empty or unneeded directories
-## 
-  
-  
-  
--  building 'maldonadopackage_0.0.0.9000.tar.gz'
-## 
-  
-   
-## </code></pre>
-<pre><code>## Installing package into 'C:/Users/brmal/AppData/Local/Temp/RtmpwnryK4/temp_libpath19c0632b3bb5'
-## (as 'lib' is unspecified)</code></pre>
+<pre><code>## Skipping install of 'maldonadopackage' from a github remote, the SHA1 (b3e9e803) has not changed since last install.
+##   Use `force = TRUE` to force installation</code></pre>
 <p>Now load the package.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">maldonadopackage</span><span class="op">)</span></code></pre></div>
-<p>Function 1 - Formatting dates and creating “Year” column</p>
-<p>Do you have a long-term dataset with many observations? Would you like to format your data in a way that allows easy visualization of year-to-year trends? Then this is the function for you! The dataset you input only needs to have a “Date” column in the following format: MM/DD/YYYY. This function is ideal for long-term datasets with observations across years or many observations per month. What do you get out of it? A column, “Year,” that pulls the year for each observation out of the date.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></code></pre></div>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
-<pre><code>## v ggplot2 3.3.2     v purrr   0.3.4
-## v tibble  3.0.4     v dplyr   1.0.2
-## v tidyr   1.1.2     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">assertthat</span><span class="op">)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: 'assertthat'</code></pre>
-<pre><code>## The following object is masked from 'package:tibble':
-## 
-##     has_name</code></pre>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
+<p>Function 1 - Formatting dates and creating “Year” and “Month” columns</p>
+<p>Do you have a long-term dataset with many observations? Would you like to format your data in a way that allows easy visualization of year-to-year trends? Then this is the function for you! The dataset you input only needs to have a “Date” column in the following format: MM/DD/YYYY. This function is ideal for long-term datasets with observations across years or many observations per month. What do you get out of it? A date column reformatted with lubridate, a “Year” column that pulls the year for every observation, and a “Month” column that pulls the month for every observation.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">assertthat</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: 'lubridate'</code></pre>
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"agpdata.csv"</span>, package<span class="op">=</span><span class="st">"maldonadopackage"</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"agp.csv"</span>, package<span class="op">=</span><span class="st">"maldonadopackage"</span><span class="op">)</span>
 <span class="va">agp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">file_path</span><span class="op">)</span>
-<span class="va">agp_by_yr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/yearify.html">yearify</a></span><span class="op">(</span><span class="va">agp</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">agp_by_yr</span><span class="op">)</span></code></pre></div>
-<pre><code>##   ï..ID     Date        Location TrapType   Species              Stage Mass
-## 1  5535 6/3/2001     MSU_Ag Site   Bucket Wood Frog Not Tadpole/Larvae    5
-## 2  5534 6/3/2001             WHS   Bucket Wood Frog Not Tadpole/Larvae    7
-## 3  5538 6/3/2001 WHS_High School   Bucket Wood Frog Not Tadpole/Larvae    8
-## 4  5536 6/3/2001 WHS_High School   Bucket Wood Frog Not Tadpole/Larvae    5
-## 5  5537 6/3/2001 WHS_High School   Bucket Wood Frog Not Tadpole/Larvae   15
-## 6  5541 6/5/2001 WHS_High School   Bucket Wood Frog Not Tadpole/Larvae    4
-##    SVL      Date1 Year
-## 1 31.0 2001-06-03 2001
-## 2 41.0 2001-06-03 2001
-## 3 42.0 2001-06-03 2001
-## 4 31.0 2001-06-03 2001
-## 5 54.4 2001-06-03 2001
-## 6 30.0 2001-06-05 2001</code></pre>
+<span class="va">agp_parsed</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_dates.html">parse_dates</a></span><span class="op">(</span><span class="va">agp</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">agp_parsed</span><span class="op">)</span></code></pre></div>
+<pre><code>##   ï..ID        Location TrapType          Species              Stage Mass  SVL
+## 1  5533 WHS_High School   Bucket Tiger Salamander Not Tadpole/Larvae   25 97.1
+## 2  5535     MSU_Ag Site   Bucket        Wood Frog Not Tadpole/Larvae    5 31.0
+## 3  5534             WHS   Bucket        Wood Frog Not Tadpole/Larvae    7 41.0
+## 4  5538 WHS_High School   Bucket        Wood Frog Not Tadpole/Larvae    8 42.0
+## 5  5536 WHS_High School   Bucket        Wood Frog Not Tadpole/Larvae    5 31.0
+## 6  5537 WHS_High School   Bucket        Wood Frog Not Tadpole/Larvae   15 54.4
+##         DATE Year Month
+## 1 2001-06-02 2001     6
+## 2 2001-06-03 2001     6
+## 3 2001-06-03 2001     6
+## 4 2001-06-03 2001     6
+## 5 2001-06-03 2001     6
+## 6 2001-06-03 2001     6</code></pre>
+<p>That’s great and all, but how do we use this? Now that the dates are formatted in this way, we can manipulate these data to observe trends.</p>
+<p>Function 2 - Calculating biomass for each life stage of each species in the dataset</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">agp_biomass</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/biomass.html">biomass</a></span><span class="op">(</span><span class="va">agp_parsed</span>, <span class="va">Species</span>, <span class="va">Stage</span>, <span class="va">Year</span>, <span class="va">Mass</span><span class="op">)</span>
+<span class="va">agp_biomass</span></code></pre></div>
+<pre><code>## # A tibble: 47 x 4
+## # Groups:   Species, Stage [9]
+##    Species            Stage               Year Biomass
+##    &lt;chr&gt;              &lt;chr&gt;              &lt;dbl&gt;   &lt;dbl&gt;
+##  1 Boreal Chorus Frog Not Tadpole/Larvae  2005    12.5
+##  2 Boreal Chorus Frog Not Tadpole/Larvae  2006    98.4
+##  3 Boreal Chorus Frog Not Tadpole/Larvae  2007   394. 
+##  4 Boreal Chorus Frog Not Tadpole/Larvae  2008   346  
+##  5 Boreal Chorus Frog Not Tadpole/Larvae  2009    18  
+##  6 Boreal Chorus Frog Not Tadpole/Larvae  2010    86  
+##  7 Boreal Chorus Frog Not Tadpole/Larvae  2011     2.9
+##  8 Boreal Chorus Frog Tadpole/Larvae      2010     0  
+##  9 Great Plains Toad  Not Tadpole/Larvae  2005    54.7
+## 10 Great Plains Toad  Not Tadpole/Larvae  2006   106. 
+## # ... with 37 more rows</code></pre>
+<p>This creates a small data frame that pretty easy to scroll through, but it would be better if we could visualize it. This third function is a streamlined approach to generating a plot for these data.</p>
+<p>Function 3 - Generating a line plot showing biomass for each life stage of each species</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plot_data.html">plot_data</a></span><span class="op">(</span><span class="va">agp_biomass</span>, <span class="va">Year</span>, <span class="va">Biomass</span>, <span class="va">Species</span><span class="op">)</span></code></pre></div>
+<p><img src="Tutorial_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

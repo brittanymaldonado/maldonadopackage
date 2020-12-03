@@ -7,10 +7,6 @@
 #' @export
 #'
 
-library(tidyverse)
-library(lubridate)
-library(assertthat)
-
 parse_dates <- function(data){
   assert_that(is.data.frame(data))
   data$DATE <- mdy(data$Date)

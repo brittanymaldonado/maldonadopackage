@@ -2,7 +2,7 @@
 #'
 #' @param data data.frame to use
 #' @return
-#' @importFrom tidyverse
+#' @importFrom tidyverse ggplot
 #' @export
 #'
 
